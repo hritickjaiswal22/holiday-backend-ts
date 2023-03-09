@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getHolidaysByYearAndMonth = exports.getHolidaysByYear = exports.test = void 0;
 const axios_1 = __importDefault(require("axios"));
 const envValues_1 = require("../utils/envValues");
+const commonUrl_1 = require("../utils/commonUrl");
 function test(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         console.log(req.params);
@@ -26,7 +27,7 @@ function getHolidaysByYear(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { country, year } = req.params;
-            const response = yield axios_1.default.get(`https://calendarific.com/api/v2/holidays?&api_key=${envValues_1.key}&country=${country}&year=${year}`);
+            const response = yield axios_1.default.get(`${commonUrl_1.baseURL}/holidays?&api_key=${envValues_1.key}&country=${country}&year=${year}`);
             res.status(200).send({
                 msg: "success",
                 holidays: (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.response) === null || _b === void 0 ? void 0 : _b.holidays,
@@ -45,7 +46,7 @@ function getHolidaysByYearAndMonth(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const { country, year, month } = req.params;
-            const response = yield axios_1.default.get(`https://calendarific.com/api/v2/holidays?&api_key=${envValues_1.key}&country=${country}&year=${year}&month=${month}`);
+            const response = yield axios_1.default.get(`${commonUrl_1.baseURL}/holidays?&api_key=${envValues_1.key}&country=${country}&year=${year}&month=${month}`);
             res.status(200).send({
                 msg: "success",
                 holidays: (_b = (_a = response === null || response === void 0 ? void 0 : response.data) === null || _a === void 0 ? void 0 : _a.response) === null || _b === void 0 ? void 0 : _b.holidays,

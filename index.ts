@@ -3,6 +3,7 @@ import cors from "cors";
 import express, { Express, Request, Response } from "express";
 
 import { PORT } from "./utils/envValues";
+import { holidaysUrl } from "./utils/commonUrl";
 import HolidayRoute from "./routes/HolidayRoute";
 
 const app: Express = express();
@@ -22,7 +23,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express + TS Server");
 });
 
-app.use("/holiday", HolidayRoute);
+app.use(holidaysUrl, HolidayRoute);
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);

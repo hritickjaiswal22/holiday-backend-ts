@@ -7,6 +7,7 @@ const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const envValues_1 = require("./utils/envValues");
+const commonUrl_1 = require("./utils/commonUrl");
 const HolidayRoute_1 = __importDefault(require("./routes/HolidayRoute"));
 const app = (0, express_1.default)();
 const port = envValues_1.PORT || 3000;
@@ -20,7 +21,7 @@ app.use((0, cors_1.default)());
 app.get("/", (req, res) => {
     res.send("Express + TS Server");
 });
-app.use("/holiday", HolidayRoute_1.default);
+app.use(commonUrl_1.holidaysUrl, HolidayRoute_1.default);
 app.listen(port, () => {
     console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
 });
